@@ -1,6 +1,6 @@
 {
-    "name": "illuminated/console-mutex",
-    "description": "Mutex for Laravel Console Commands.",
+    "name": "insurama/laravel-console-mutex",
+    "description": "Mutex for Laravel Console Commands. Forked to support SSL connection with MySQL/MariaDB",
     "keywords": ["laravel", "console", "command", "mutex", "mutex-lock", "semaphore", "locker", "no-overlapping"],
     "license": "MIT",
     "support": {
