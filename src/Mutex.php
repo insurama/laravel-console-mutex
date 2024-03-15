@@ -85,7 +85,14 @@ class Mutex
      */
     private function getRedisLock(string $client): LockAbstract
     {
-        $redis = RedisFacade::connection()->client();
+        // use the env defined variable or 'mutexes' by default
+        $redis_config_db = env('REDIS_MUTEX_CONFIG_DB', 'mutexes');
+
+        // test if really configured the DB for mutexes or use the default connection
+        $redis_connection = config('database.redis.' . $redis_config_db) ? $redis_config_db: null;
+
+        // configure the redis connections for locking
+        $redis = RedisFacade::connection($redis_connection)->client();
 
         return $client === 'phpredis'
             ? new PhpRedisLock($redis)
